@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Shifts\ContinuousDutyValidatorTests.cs" />
+    <Compile Include="Application\Shifts\EightyHoursPerWeekValidatorTests.cs" />
     <Compile Include="Application\Shifts\HoursOffBetweenShiftsValidatorTests.cs" />
     <Compile Include="Application\Shifts\ShiftsTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
