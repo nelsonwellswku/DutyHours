@@ -90,16 +90,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Entities\Shift.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
     <Compile Include="DataAccessModule.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Migrations\201604301914393_InitialShiftsAndUsers.cs" />
+    <Compile Include="Migrations\201604301914393_InitialShiftsAndUsers.Designer.cs">
+      <DependentUpon>201604301914393_InitialShiftsAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604301914393_InitialShiftsAndUsers.resx">
+      <DependentUpon>201604301914393_InitialShiftsAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
