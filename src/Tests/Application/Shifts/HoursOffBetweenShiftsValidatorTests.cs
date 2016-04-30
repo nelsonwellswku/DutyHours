@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using Octogami.DutyHours.Application.Shifts;
@@ -12,7 +10,7 @@ namespace Octogami.DutyHours.Tests.Application.Shifts
 {
 	public class HoursOffBetweenShiftsValidatorTests
 	{
-		private HoursOffBetweenShiftsValidator Validator;
+		private HoursOffBetweenShiftsValidator Validator { get; set; }
 
 		[SetUp]
 		public void SetUp()
@@ -21,27 +19,10 @@ namespace Octogami.DutyHours.Tests.Application.Shifts
 		}
 
 		[Test]
-		public void NoShiftsThatHaveLessThan8HoursBetweenThem()
+		public void NoShiftsThatHaveLessThan8HoursBetweenThem_HappyPath()
 		{
 			// Arrange
-			var beginningOfFirstShift = new DateTimeOffset(2000, 01, 01, 8, 0, 0, TimeSpan.Zero);
-			var shiftOne = new Shift
-			{
-				Begin = beginningOfFirstShift,
-				End = beginningOfFirstShift.AddHours(8)
-			};
-			var shiftTwo = new Shift
-			{
-				Begin = shiftOne.End.AddHours(8),
-				End = shiftOne.End.AddHours(16)
-			};
-			var shiftThree = new Shift
-			{
-				Begin = shiftTwo.End.AddHours(8),
-				End = shiftTwo.End.AddHours(16)
-			};
-
-			var shifts = new List<Shift> {shiftOne, shiftTwo, shiftThree};
+			var shifts = ShiftsTestData.ValidShifts;
 
 			// Act
 			var results = Validator.ValidateShifts(shifts);
@@ -74,7 +55,7 @@ namespace Octogami.DutyHours.Tests.Application.Shifts
 				End = shiftTwo.End.AddHours(16)
 			};
 
-			var shifts = new List<Shift> { shiftOne, shiftTwo, shiftThree };
+			var shifts = new List<Shift> {shiftOne, shiftTwo, shiftThree};
 
 			// Act
 			var results = Validator.ValidateShifts(shifts);
@@ -84,7 +65,7 @@ namespace Octogami.DutyHours.Tests.Application.Shifts
 			singleResult.ShouldBeEquivalentTo(new ShiftValidationResult
 			{
 				Description = "The ending of one shift was less than 8 hours from the beginning of another shift.",
-				ViolatingShifts = new List<Shift>() { new Shift {  ShiftId = 2, Begin = shiftTwo.Begin, End = shiftTwo.End} },
+				ViolatingShifts = new List<Shift>() {new Shift {ShiftId = 2, Begin = shiftTwo.Begin, End = shiftTwo.End}},
 				ErrorType = ShiftValidationErrorType.EightHoursOffBetweenShifts
 			});
 		}
