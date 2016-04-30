@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Octogami.DutyHours.DataAccess;
+using Octogami.DutyHours.DataAccess.Identity;
 using Octogami.DutyHours.Web.Models;
 
 namespace Octogami.DutyHours.Web.Controllers
