@@ -1,0 +1,18 @@
+﻿@model Octogami.DutyHours.Web.Models.AnalysisViewModel
+
+
+
+<h2>Analysis for @Model.UserName</h2>
+@foreach(var result in @Model.ValidationResults)
+{
+    <h3>@result.Description</h3>
+    <p>@result.ErrorType.ToString()</p>
+    <p>Shifts</p>
+    <ul>
+        @foreach(var shift in @result.ViolatingShifts)
+        {
+            <li>@shift.Begin to @shift.End</li>
+        }
+    </ul>
+}
+

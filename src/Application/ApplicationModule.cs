@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Octogami.DutyHours.Application.Shifts;
 
 namespace Octogami.DutyHours.Application
 {
@@ -9,6 +10,8 @@ namespace Octogami.DutyHours.Application
 			var assembly = typeof(ApplicationModule).Assembly;
 			builder.RegisterAssemblyTypes(assembly)
 				.AsImplementedInterfaces();
+
+			builder.RegisterType<ShiftValidator>().AsSelf().InstancePerLifetimeScope();
 		}
 	}
 }
