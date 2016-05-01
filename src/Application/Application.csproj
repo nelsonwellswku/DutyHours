@@ -51,6 +51,7 @@
     <Compile Include="Shifts\HoursOffBetweenShiftsValidator.cs" />
     <Compile Include="Shifts\IShiftValidator.cs" />
     <Compile Include="Shifts\ShiftValidationResult.cs" />
+    <Compile Include="Shifts\TwentyFourHourDayOffValidator.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>

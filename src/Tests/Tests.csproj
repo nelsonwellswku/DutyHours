@@ -56,6 +56,7 @@
     <Compile Include="Application\Shifts\EightyHoursPerWeekValidatorTests.cs" />
     <Compile Include="Application\Shifts\HoursOffBetweenShiftsValidatorTests.cs" />
     <Compile Include="Application\Shifts\ShiftsTestData.cs" />
+    <Compile Include="Application\Shifts\TwentyFourHourDayOffValidatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

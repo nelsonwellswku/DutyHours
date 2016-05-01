@@ -9,7 +9,7 @@ namespace Octogami.DutyHours.Application.Shifts
 		public IEnumerable<ShiftValidationResult> ValidateShifts(IEnumerable<Shift> shifts)
 		{
 			var shiftList = shifts.ToList();
-			var totalHours = shiftList.ToList().Select(x => (x.End - x.Begin).TotalHours).Sum();
+			var totalHours = shiftList.Select(x => (x.End - x.Begin).TotalHours).Sum();
 			if(totalHours / 4 > 80)
 			{
 				return new List<ShiftValidationResult>
