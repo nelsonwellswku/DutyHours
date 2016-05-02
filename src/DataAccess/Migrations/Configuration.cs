@@ -16,17 +16,6 @@ namespace Octogami.DutyHours.DataAccess.Migrations
 		{
 			//  This method will be called after migrating to the latest version.
 
-			//  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-			//  to avoid creating duplicate seed data. E.g.
-			//
-			//    context.People.AddOrUpdate(
-			//      p => p.FullName,
-			//      new Person { FullName = "Andrew Peters" },
-			//      new Person { FullName = "Brice Lambson" },
-			//      new Person { FullName = "Rowan Miller" }
-			//    );
-			//
-
 			// Add some test users
 			var john = new ApplicationUser {UserName = "John"};
 			var patty = new ApplicationUser {UserName = "Patty"};
@@ -66,6 +55,27 @@ namespace Octogami.DutyHours.DataAccess.Migrations
 					User = john
 				}
 			);
+
+			// patty's shifts
+			var firstShiftBeginning = new DateTimeOffset(2001, 1, 1, 0, 0, 0, TimeSpan.Zero);
+			for(int i = 0; i < 26; i++)
+			{
+				context.Shifts.AddOrUpdate(x => x.Begin, new Shift
+				{
+					User = patty,
+					Begin = firstShiftBeginning.AddHours(8),
+					End = firstShiftBeginning.AddHours(8 + 13)
+				});
+
+				firstShiftBeginning = firstShiftBeginning.AddDays(1);
+			}
+
+			context.Shifts.AddOrUpdate(x => x.Begin, new Shift
+			{
+				User = patty,
+				Begin = firstShiftBeginning,
+				End = firstShiftBeginning.AddDays(1)
+			});
 		}
 	}
 }
